@@ -480,8 +480,7 @@
   <section class="screen" id="photos">
     <button class="ghost back" data-go="menu">← Balik</button>
     <h2 class="script">Kenangan Kita 📸</h2>
-    <p style="font-size:.9rem;opacity:.8">Tekan bingkai untuk letak gambar / video</p>
-    <div class="grid" id="grid"></div>
+        <div class="grid" id="grid"></div>
     <input type="file" id="file" accept="image/*,video/*" hidden>
   </section>
 
@@ -568,14 +567,27 @@
     };
 
     /* photos */
+    /* Gambar ada dalam folder "images" (1 hingga 6), ikut susunan CAPTIONS. */
+    const PHOTO_COUNT = CAPTIONS.length;
+    const EXTS = ["jpg", "jpeg", "JPG", "JPEG", "png", "PNG", "webp"]; /* cuba satu-satu sampai jumpa */
     let target = null;
-    CAPTIONS.forEach(c => {
+    function loadPhoto(frame, n, k) {
+      const ph = frame.querySelector('.ph');
+      if (k >= EXTS.length) { ph.textContent = '🌹'; frame.dataset.fixed = ''; return }
+      const img = new Image();
+      img.alt = '';
+      img.onload = () => { ph.innerHTML = ''; ph.appendChild(img); frame.dataset.fixed = '1' };
+      img.onerror = () => loadPhoto(frame, n, k + 1);
+      img.src = 'images/' + n + '.' + EXTS[k];
+    }
+    CAPTIONS.forEach((c, i) => {
       const f = document.createElement('div'); f.className = 'frame';
       f.innerHTML = '<div class="ph">🌹</div><div class="cap" contenteditable="true"></div>';
       f.querySelector('.cap').textContent = c;
       f.querySelector('.cap').onclick = e => e.stopPropagation();
-      f.onclick = () => { target = f; $('#file').click() };
+      f.onclick = () => { if (f.dataset.fixed) return; target = f; $('#file').click() };
       $('#grid').appendChild(f);
+      loadPhoto(f, i + 1, 0);
     });
     $('#file').onchange = e => {
       const file = e.target.files[0]; if (!file || !target) return;
