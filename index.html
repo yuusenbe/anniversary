@@ -1,229 +1,617 @@
 <!DOCTYPE html>
 <html lang="ms">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>1 Tahun Kita 🌹</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌹</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Mrs+Saint+Delafield&family=Allura&display=swap" rel="stylesheet">
-<style>
-:root{--bg1:#3a0610;--bg2:#8b0a1f;--rose:#e11d48;--soft:#ffe4e9;--gold:#f6c177;--card:rgba(255,255,255,.1);--line:rgba(255,255,255,.25);
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{margin:0;min-height:100%}
-body{background:radial-gradient(circle at 50% 0%,var(--bg2),var(--bg1) 70%) fixed;color:var(--soft);font-family:'Playfair Display',Georgia,serif;overflow-x:hidden;min-height:100vh}
-.script{font-family:'Mrs Saint Delafield','Allura','Brush Script MT',cursive;line-height:1.1;font-weight:400}h1.script{font-size:3.4rem}h2.script{font-size:2.8rem}
-.screen{display:none;min-height:100vh;padding:28px 18px 40px;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:2;animation:fade .6s}
-.screen.on{display:flex}
-@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-h1{font-size:2.2rem;margin:.2em 0;font-weight:600}
-h2{font-size:1.7rem;margin:.2em 0}
-p{margin:.4em 0;line-height:1.5}
-.petal{position:fixed;top:-40px;z-index:1;pointer-events:none;animation:fall linear forwards}
-@keyframes fall{to{transform:translateY(115vh) rotate(360deg)}}
-/* keypad */
-.rose-big{font-size:4rem;animation:beat 1.6s infinite}
-@keyframes beat{50%{transform:scale(1.12)}}
-.dots{display:flex;gap:14px;margin:18px 0 8px}
-.dots i{width:16px;height:16px;border-radius:50%;border:2px solid var(--soft)}
-.dots i.f{background:var(--soft)}
-.pad{display:grid;grid-template-columns:repeat(3,72px);gap:12px;margin-top:14px}
-.pad button{height:72px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:#fff;font:600 1.6rem 'Playfair Display',Georgia,serif;cursor:pointer;backdrop-filter:blur(6px);transition:.15s}
-.pad button:active{background:var(--rose);transform:scale(.92)}
-.err{min-height:1.6em;color:#ffb3c1;font-style:italic;margin-top:8px}
-.shake{animation:shake .45s}
-@keyframes shake{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
-/* menu */
-.menu{display:flex;flex-direction:column;gap:16px;margin-top:22px;width:min(320px,100%)}
-.big{border:1px solid var(--line);background:linear-gradient(135deg,#e11d48,#9f1239);color:#fff;border-radius:26px;padding:18px 20px;font:600 1.25rem 'Playfair Display',Georgia,serif;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:.2s}
-.big:hover{transform:translateY(-3px) scale(1.03)}
-.big span{display:block;font-size:2rem}
-.ghost{margin-top:22px;background:none;border:1px solid var(--line);color:var(--soft);border-radius:20px;padding:9px 18px;font:inherit;cursor:pointer}
-.back{align-self:flex-start;margin:0 0 10px}
-/* letter */
-.paper{background:#fff7f0;color:#4a1420;width:min(520px,100%);border-radius:10px;padding:26px 22px;text-align:left;box-shadow:0 10px 30px rgba(0,0,0,.45);border-left:6px solid var(--rose);font-family:'Allura','Brush Script MT',cursive;font-size:1.7rem;line-height:1.55;min-height:260px;white-space:pre-wrap;outline:none}
-.paper[contenteditable=true]{box-shadow:0 0 0 3px var(--gold),0 10px 30px rgba(0,0,0,.45)}
-/* gallery */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;width:min(520px,100%);margin-top:12px}
-.frame{background:#fff;padding:8px 8px 10px;border-radius:6px;color:#4a1420;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,.4);transform:rotate(-2deg)}
-.frame:nth-child(even){transform:rotate(2deg)}
-.frame .ph{aspect-ratio:1;background:#ffe4e9;display:flex;align-items:center;justify-content:center;font-size:2.4rem;overflow:hidden;border-radius:3px}
-.frame img,.frame video{width:100%;height:100%;object-fit:cover}
-.frame div.cap{font-family:'Allura',cursive;font-size:1.35rem;margin-top:6px;outline:none}
-/* gifts */
-.gifts{display:flex;flex-direction:column;gap:14px;width:min(420px,100%);margin-top:12px}
-.gift{border-radius:20px;padding:18px;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.4);text-align:center;transition:.2s}
-.gift:hover{transform:scale(1.03)}
-.gift .t{font-size:1.3rem;font-weight:600}
-.gift .clue{display:none;margin-top:10px;font-family:'Allura',cursive;font-size:1.6rem}
-.gift.open .clue{display:block}
-.g-red{background:#dc2626;color:#fff}.g-yellow{background:#facc15;color:#422006}.g-black{background:#111;color:#fff;border:1px solid #444}
-/* modal */
-.modal{position:fixed;inset:0;background:rgba(20,0,5,.75);display:none;align-items:center;justify-content:center;z-index:50;padding:20px}
-.modal.on{display:flex}
-.box{background:linear-gradient(160deg,#9f1239,#4c0519);border:1px solid var(--line);border-radius:24px;padding:28px 22px;width:min(360px,100%);text-align:center;animation:fade .3s}
-.box h2{font-size:1.4rem}
-.row{display:flex;gap:12px;justify-content:center;margin-top:18px}
-.row button{flex:1;padding:12px;border-radius:16px;border:none;font:600 1.05rem 'Playfair Display',Georgia,serif;cursor:pointer}
-.yes{background:#fff;color:#9f1239}.no{background:rgba(255,255,255,.15);color:#fff;border:1px solid var(--line)!important}
-.emo{position:fixed;bottom:-50px;z-index:99;pointer-events:none;animation:rise 3.2s linear forwards}
-@keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:.2}}
-#final h1{font-size:3rem}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>1 Tahun Kita 🌹</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌹</text></svg>">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,500&family=Mrs+Saint+Delafield&family=Allura&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #3a0610;
+      --bg2: #8b0a1f;
+      --rose: #e11d48;
+      --soft: #ffe4e9;
+      --gold: #f6c177;
+      --card: rgba(255, 255, 255, .1);
+      --line: rgba(255, 255, 255, .25);
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%
+    }
+
+    body {
+      background: radial-gradient(circle at 50% 0%, var(--bg2), var(--bg1) 70%) fixed;
+      color: var(--soft);
+      font-family: 'Playfair Display', Georgia, serif;
+      overflow-x: hidden;
+      min-height: 100vh
+    }
+
+    .script {
+      font-family: 'Mrs Saint Delafield', 'Allura', 'Brush Script MT', cursive;
+      line-height: 1.1;
+      font-weight: 400
+    }
+
+    h1.script {
+      font-size: 3.4rem
+    }
+
+    h2.script {
+      font-size: 2.8rem
+    }
+
+    .screen {
+      display: none;
+      min-height: 100vh;
+      padding: 28px 18px 40px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      animation: fade .6s
+    }
+
+    .screen.on {
+      display: flex
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(14px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin: .2em 0;
+      font-weight: 600
+    }
+
+    h2 {
+      font-size: 1.7rem;
+      margin: .2em 0
+    }
+
+    p {
+      margin: .4em 0;
+      line-height: 1.5
+    }
+
+    .petal {
+      position: fixed;
+      top: -40px;
+      z-index: 1;
+      pointer-events: none;
+      animation: fall linear forwards
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(115vh) rotate(360deg)
+      }
+    }
+
+    /* keypad */
+    .rose-big {
+      font-size: 4rem;
+      animation: beat 1.6s infinite
+    }
+
+    @keyframes beat {
+      50% {
+        transform: scale(1.12)
+      }
+    }
+
+    .dots {
+      display: flex;
+      gap: 14px;
+      margin: 18px 0 8px
+    }
+
+    .dots i {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 2px solid var(--soft)
+    }
+
+    .dots i.f {
+      background: var(--soft)
+    }
+
+    .pad {
+      display: grid;
+      grid-template-columns: repeat(3, 72px);
+      gap: 12px;
+      margin-top: 14px
+    }
+
+    .pad button {
+      height: 72px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: #fff;
+      font: 600 1.6rem 'Playfair Display', Georgia, serif;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: .15s
+    }
+
+    .pad button:active {
+      background: var(--rose);
+      transform: scale(.92)
+    }
+
+    .err {
+      min-height: 1.6em;
+      color: #ffb3c1;
+      font-style: italic;
+      margin-top: 8px
+    }
+
+    .shake {
+      animation: shake .45s
+    }
+
+    @keyframes shake {
+
+      20%,
+      60% {
+        transform: translateX(-10px)
+      }
+
+      40%,
+      80% {
+        transform: translateX(10px)
+      }
+    }
+
+    /* menu */
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 22px;
+      width: min(320px, 100%)
+    }
+
+    .big {
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, #e11d48, #9f1239);
+      color: #fff;
+      border-radius: 26px;
+      padding: 18px 20px;
+      font: 600 1.25rem 'Playfair Display', Georgia, serif;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+      transition: .2s
+    }
+
+    .big:hover {
+      transform: translateY(-3px) scale(1.03)
+    }
+
+    .big span {
+      display: block;
+      font-size: 2rem
+    }
+
+    .ghost {
+      margin-top: 22px;
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--soft);
+      border-radius: 20px;
+      padding: 9px 18px;
+      font: inherit;
+      cursor: pointer
+    }
+
+    .back {
+      align-self: flex-start;
+      margin: 0 0 10px
+    }
+
+    /* letter */
+    .paper {
+      background: #fff7f0;
+      color: #4a1420;
+      width: min(520px, 100%);
+      border-radius: 10px;
+      padding: 26px 22px;
+      text-align: left;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
+      border-left: 6px solid var(--rose);
+      font-family: 'Allura', 'Brush Script MT', cursive;
+      font-size: 1.7rem;
+      line-height: 1.55;
+      min-height: 260px;
+      white-space: pre-wrap;
+      outline: none
+    }
+
+    .paper[contenteditable=true] {
+      box-shadow: 0 0 0 3px var(--gold), 0 10px 30px rgba(0, 0, 0, .45)
+    }
+
+    /* gallery */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      width: min(520px, 100%);
+      margin-top: 12px
+    }
+
+    .frame {
+      background: #fff;
+      padding: 8px 8px 10px;
+      border-radius: 6px;
+      color: #4a1420;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .4);
+      transform: rotate(-2deg)
+    }
+
+    .frame:nth-child(even) {
+      transform: rotate(2deg)
+    }
+
+    .frame .ph {
+      aspect-ratio: 1;
+      background: #ffe4e9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      overflow: hidden;
+      border-radius: 3px
+    }
+
+    .frame img,
+    .frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .frame div.cap {
+      font-family: 'Allura', cursive;
+      font-size: 1.35rem;
+      margin-top: 6px;
+      outline: none
+    }
+
+    /* gifts */
+    .gifts {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: min(420px, 100%);
+      margin-top: 12px
+    }
+
+    .gift {
+      border-radius: 20px;
+      padding: 18px;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .4);
+      text-align: center;
+      transition: .2s
+    }
+
+    .gift:hover {
+      transform: scale(1.03)
+    }
+
+    .gift .t {
+      font-size: 1.3rem;
+      font-weight: 600
+    }
+
+    .gift .clue {
+      display: none;
+      margin-top: 10px;
+      font-family: 'Allura', cursive;
+      font-size: 1.6rem
+    }
+
+    .gift.open .clue {
+      display: block
+    }
+
+    .g-red {
+      background: #dc2626;
+      color: #fff
+    }
+
+    .g-yellow {
+      background: #facc15;
+      color: #422006
+    }
+
+    .g-black {
+      background: #111;
+      color: #fff;
+      border: 1px solid #444
+    }
+
+    /* modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 0, 5, .75);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      padding: 20px
+    }
+
+    .modal.on {
+      display: flex
+    }
+
+    .box {
+      background: linear-gradient(160deg, #9f1239, #4c0519);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px 22px;
+      width: min(360px, 100%);
+      text-align: center;
+      animation: fade .3s
+    }
+
+    .box h2 {
+      font-size: 1.4rem
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 18px
+    }
+
+    .row button {
+      flex: 1;
+      padding: 12px;
+      border-radius: 16px;
+      border: none;
+      font: 600 1.05rem 'Playfair Display', Georgia, serif;
+      cursor: pointer
+    }
+
+    .yes {
+      background: #fff;
+      color: #9f1239
+    }
+
+    .no {
+      background: rgba(255, 255, 255, .15);
+      color: #fff;
+      border: 1px solid var(--line) !important
+    }
+
+    .emo {
+      position: fixed;
+      bottom: -50px;
+      z-index: 99;
+      pointer-events: none;
+      animation: rise 3.2s linear forwards
+    }
+
+    @keyframes rise {
+      to {
+        transform: translateY(-115vh) rotate(25deg);
+        opacity: .2
+      }
+    }
+
+    #final h1 {
+      font-size: 3rem
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- 1. KEYPAD -->
-<section class="screen on" id="lock">
-  <div class="rose-big">🌹</div>
-  <h1 class="script">Happy Anniversary Sayangku</h1>
-  <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
-  <div class="err" id="err"></div>
-  <div class="pad" id="pad"></div>
-</section>
+  <!-- 1. KEYPAD -->
+  <section class="screen on" id="lock">
+    <div class="rose-big">🌹</div>
+    <h1 class="script">Happy Anniversary Sayangku</h1>
+    <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+    <div class="err" id="err"></div>
+    <div class="pad" id="pad"></div>
+  </section>
 
-<!-- 2. MENU -->
-<section class="screen" id="menu">
-  <div class="rose-big" style="font-size:3rem">🌹</div>
-  <h1 class="script">Happy 1st Anniversary!</h1>
-  <div class="menu">
-    <button class="big" data-go="letter"><span>💌</span>Surat Cinta</button>
-    <button class="big" data-go="photos"><span>📸</span>Kenangan Kita</button>
-    <button class="big" data-go="gifts"><span>🎁</span>Hadiah</button>
+  <!-- 2. MENU -->
+  <section class="screen" id="menu">
+    <div class="rose-big" style="font-size:3rem">🌹</div>
+    <h1 class="script">Happy 1st Anniversary!</h1>
+    <div class="menu">
+      <button class="big" data-go="letter"><span>💌</span>Surat Cinta</button>
+      <button class="big" data-go="photos"><span>📸</span>Kenangan Kita</button>
+      <button class="big" data-go="gifts"><span>🎁</span>Hadiah</button>
+    </div>
+    <button class="ghost" id="exit">Keluar 🚪</button>
+  </section>
+
+  <!-- LETTER -->
+  <section class="screen" id="letter">
+    <button class="ghost back" data-go="menu">← Balik</button>
+    <h2 class="script">Surat untuk Sayang 💌</h2>
+    <div class="paper" id="paper" contenteditable="false"></div>
+    <button class="ghost" id="editBtn">✏️ Edit surat</button>
+  </section>
+
+  <!-- PHOTOS -->
+  <section class="screen" id="photos">
+    <button class="ghost back" data-go="menu">← Balik</button>
+    <h2 class="script">Kenangan Kita 📸</h2>
+    <p style="font-size:.9rem;opacity:.8">Tekan bingkai untuk letak gambar / video</p>
+    <div class="grid" id="grid"></div>
+    <input type="file" id="file" accept="image/*,video/*" hidden>
+  </section>
+
+  <!-- GIFTS -->
+  <section class="screen" id="gifts">
+    <button class="ghost back" data-go="menu">← Balik</button>
+    <h2 class="script">Permainan Hadiah 🎁</h2>
+    <p>Merah, Kuning, Hitam… tekan untuk dapat klu!</p>
+    <div class="gifts" id="giftList"></div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="screen" id="final">
+    <h1 class="script" id="finalText"></h1>
+    <button class="ghost" id="again">🌹 Balik ke permulaan</button>
+  </section>
+
+  <!-- MODALS -->
+  <div class="modal" id="m1">
+    <div class="box">
+      <h2>Sayang betul ni nak exit? 🥺</h2>
+      <div class="row"><button class="yes" id="y1">Yes</button><button class="no" id="n1">No</button></div>
+    </div>
   </div>
-  <button class="ghost" id="exit">Keluar 🚪</button>
-</section>
+  <div class="modal" id="m2">
+    <div class="box">
+      <h2>Janji kita jumpa lagi? 💞</h2>
+      <div class="row"><button class="yes" id="y2">Janji</button><button class="no" id="n2">Tak janji</button></div>
+    </div>
+  </div>
 
-<!-- LETTER -->
-<section class="screen" id="letter">
-  <button class="ghost back" data-go="menu">← Balik</button>
-  <h2 class="script">Surat untuk Sayang 💌</h2>
-  <div class="paper" id="paper" contenteditable="false"></div>
-  <button class="ghost" id="editBtn">✏️ Edit surat</button>
-</section>
+  <script>
+    /* ====== EDIT BAHAGIAN NI SENDIRI ====== */
+    const CODE = "0511";
+    const LETTER = "Sayang,\n\nHappy first anniversary sayang. I hope you like this small surprise. Me cannot wait to meet sayang and do the cute exchange thingy that we plan. Me really hope we can meet very soon. I miss sayang so so much and love you so so much. \n\nThank you sayang sebab always sabar dengan tantrum i, always try your best to faham i and always make me feel special. \n\nI hope we could celebrate more anniversary in the future.  \n\nLove you always \n— Leya";
+    const CAPTIONS = ["Our first awkward shy shy date at Sunway Pyramid", "My favourite date", "Sayang being funny with kerusi urut (lepastu sakit badan btw)", "Sayang said no more mee tangan (that shucks)", "Randomest date but it is sooo fun even we met very tiny time", "My sayang barai face (my favourite picture btw, i love you so much sayangkuuu)"];
+    const GIFTS = [
+      { c: "red", name: "❤️ Hadiah Merah", clue: "Klu: Something sayang selalu pakai" },
+      { c: "yellow", name: "💛 Hadiah Kuning", clue: "Klu: Something sayang currently addicted to" },
+      { c: "black", name: "🖤 Hadiah Hitam", clue: "Klu: Something yang useful untuk sayang (Good for health oso)" }
+    ];
+    /* ======================================= */
 
-<!-- PHOTOS -->
-<section class="screen" id="photos">
-  <button class="ghost back" data-go="menu">← Balik</button>
-  <h2 class="script">Kenangan Kita 📸</h2>
-  <p style="font-size:.9rem;opacity:.8">Tekan bingkai untuk letak gambar / video</p>
-  <div class="grid" id="grid"></div>
-  <input type="file" id="file" accept="image/*,video/*" hidden>
-</section>
+    const $ = s => document.querySelector(s);
+    function show(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('on')); $('#' + id).classList.add('on'); window.scrollTo(0, 0) }
+    document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => show(b.dataset.go));
 
-<!-- GIFTS -->
-<section class="screen" id="gifts">
-  <button class="ghost back" data-go="menu">← Balik</button>
-  <h2 class="script">Permainan Hadiah 🎁</h2>
-  <p>Merah, Kuning, Hitam… tekan untuk dapat klu!</p>
-  <div class="gifts" id="giftList"></div>
-</section>
+    /* falling petals */
+    setInterval(() => {
+      const p = document.createElement('div'); p.className = 'petal'; p.textContent = Math.random() < .7 ? '🌹' : '🌸';
+      p.style.left = Math.random() * 100 + 'vw'; p.style.fontSize = (14 + Math.random() * 16) + 'px'; p.style.animationDuration = (6 + Math.random() * 6) + 's'; p.style.opacity = .7;
+      document.body.appendChild(p); setTimeout(() => p.remove(), 12500)
+    }, 650);
 
-<!-- FINAL -->
-<section class="screen" id="final">
-  <h1 class="script" id="finalText"></h1>
-  <button class="ghost" id="again">🌹 Balik ke permulaan</button>
-</section>
+    /* keypad */
+    let entry = "";
+    const pad = $('#pad');
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", "⌫"].forEach(k => { const b = document.createElement('button'); b.textContent = k; if (!k) b.style.visibility = 'hidden'; b.onclick = () => press(k); pad.appendChild(b) });
+    function render() { document.querySelectorAll('#dots i').forEach((d, i) => d.classList.toggle('f', i < entry.length)) }
+    function press(k) {
+      if (k === "⌫") { entry = entry.slice(0, -1); render(); return }
+      if (entry.length >= 4) return;
+      entry += k; render(); $('#err').textContent = "";
+      if (entry.length === 4) {
+        if (entry === CODE) { setTimeout(() => { show('menu'); entry = ""; render() }, 300) }
+        else {
+          const d = $('#dots'); d.classList.add('shake'); $('#err').textContent = "Sampai hati sayang salah.. 💔";
+          setTimeout(() => { d.classList.remove('shake'); entry = ""; render() }, 500)
+        }
+      }
+    }
+    document.addEventListener('keydown', e => { if ($('#lock').classList.contains('on')) { if (/^\d$/.test(e.key)) press(e.key); if (e.key === 'Backspace') press('⌫') } });
 
-<!-- MODALS -->
-<div class="modal" id="m1"><div class="box"><h2>Sayang betul ni nak exit? 🥺</h2>
-  <div class="row"><button class="yes" id="y1">Yes</button><button class="no" id="n1">No</button></div></div></div>
-<div class="modal" id="m2"><div class="box"><h2>Janji kita jumpa lagi? 💞</h2>
-  <div class="row"><button class="yes" id="y2">Janji</button><button class="no" id="n2">Tak janji</button></div></div></div>
+    /* letter */
+    const paper = $('#paper'); let saved = null;
+    try { saved = localStorage.getItem('annLetter') } catch (e) { }
+    paper.textContent = saved || LETTER;
+    $('#editBtn').onclick = () => {
+      const on = paper.contentEditable !== "true";
+      paper.contentEditable = on;
+      $('#editBtn').textContent = on ? "💾 Simpan" : "✏️ Edit surat";
+      if (!on) { try { localStorage.setItem('annLetter', paper.innerText) } catch (e) { } }
+      else paper.focus();
+    };
 
-<script>
-/* ====== EDIT BAHAGIAN NI SENDIRI ====== */
-const CODE = "0511";
-const LETTER = "Sayang,\n\nSelamat ulang tahun pertama kita! Terima kasih sebab sentiasa ada, sabar dengan saya, dan buat hari-hari saya lebih indah.\n\nSaya harap kita terus bersama, makin sayang, makin bahagia.\n\nLove you always 🌹\n— Dari saya";
-const CAPTIONS = ["Kali pertama kita","Date favourite","Gelak sama-sama","Trip kita","Gambar comel","Nak lagi!"];
-const GIFTS = [
-  {c:"red",   name:"❤️ Hadiah Merah",  clue:"Klu: Something sayang selalu pakai"},
-  {c:"yellow",name:"💛 Hadiah Kuning", clue:"Klu: Something sayang currently addicted to"},
-  {c:"black", name:"🖤 Hadiah Hitam",  clue:"Klu: Something yang useful untuk sayang (Good for health oso)"}
-];
-/* ======================================= */
+    /* photos */
+    let target = null;
+    CAPTIONS.forEach(c => {
+      const f = document.createElement('div'); f.className = 'frame';
+      f.innerHTML = '<div class="ph">🌹</div><div class="cap" contenteditable="true"></div>';
+      f.querySelector('.cap').textContent = c;
+      f.querySelector('.cap').onclick = e => e.stopPropagation();
+      f.onclick = () => { target = f; $('#file').click() };
+      $('#grid').appendChild(f);
+    });
+    $('#file').onchange = e => {
+      const file = e.target.files[0]; if (!file || !target) return;
+      const url = URL.createObjectURL(file);
+      target.querySelector('.ph').innerHTML = file.type.startsWith('video') ? `<video src="${url}" controls playsinline></video>` : `<img src="${url}" alt="">`;
+      e.target.value = "";
+    };
 
-const $=s=>document.querySelector(s);
-function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));$('#'+id).classList.add('on');window.scrollTo(0,0)}
-document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>show(b.dataset.go));
+    /* gifts */
+    GIFTS.forEach(g => {
+      const d = document.createElement('div'); d.className = 'gift g-' + g.c;
+      d.innerHTML = '<div class="t"></div><div class="clue"></div>';
+      d.querySelector('.t').textContent = g.name; d.querySelector('.clue').textContent = g.clue;
+      d.onclick = () => d.classList.toggle('open');
+      $('#giftList').appendChild(d);
+    });
 
-/* falling petals */
-setInterval(()=>{const p=document.createElement('div');p.className='petal';p.textContent=Math.random()<.7?'🌹':'🌸';
-p.style.left=Math.random()*100+'vw';p.style.fontSize=(14+Math.random()*16)+'px';p.style.animationDuration=(6+Math.random()*6)+'s';p.style.opacity=.7;
-document.body.appendChild(p);setTimeout(()=>p.remove(),12500)},650);
-
-/* keypad */
-let entry="";
-const pad=$('#pad');
-["1","2","3","4","5","6","7","8","9","","0","⌫"].forEach(k=>{const b=document.createElement('button');b.textContent=k;if(!k)b.style.visibility='hidden';b.onclick=()=>press(k);pad.appendChild(b)});
-function render(){document.querySelectorAll('#dots i').forEach((d,i)=>d.classList.toggle('f',i<entry.length))}
-function press(k){
-  if(k==="⌫"){entry=entry.slice(0,-1);render();return}
-  if(entry.length>=4)return;
-  entry+=k;render();$('#err').textContent="";
-  if(entry.length===4){
-    if(entry===CODE){setTimeout(()=>{show('menu');entry="";render()},300)}
-    else{const d=$('#dots');d.classList.add('shake');$('#err').textContent="Sampai hati sayang salah.. 💔";
-      setTimeout(()=>{d.classList.remove('shake');entry="";render()},500)}
-  }
-}
-document.addEventListener('keydown',e=>{if($('#lock').classList.contains('on')){if(/^\d$/.test(e.key))press(e.key);if(e.key==='Backspace')press('⌫')}});
-
-/* letter */
-const paper=$('#paper');let saved=null;
-try{saved=localStorage.getItem('annLetter')}catch(e){}
-paper.textContent=saved||LETTER;
-$('#editBtn').onclick=()=>{
-  const on=paper.contentEditable!=="true";
-  paper.contentEditable=on;
-  $('#editBtn').textContent=on?"💾 Simpan":"✏️ Edit surat";
-  if(!on){try{localStorage.setItem('annLetter',paper.innerText)}catch(e){}}
-  else paper.focus();
-};
-
-/* photos */
-let target=null;
-CAPTIONS.forEach(c=>{
-  const f=document.createElement('div');f.className='frame';
-  f.innerHTML='<div class="ph">🌹</div><div class="cap" contenteditable="true"></div>';
-  f.querySelector('.cap').textContent=c;
-  f.querySelector('.cap').onclick=e=>e.stopPropagation();
-  f.onclick=()=>{target=f;$('#file').click()};
-  $('#grid').appendChild(f);
-});
-$('#file').onchange=e=>{
-  const file=e.target.files[0];if(!file||!target)return;
-  const url=URL.createObjectURL(file);
-  target.querySelector('.ph').innerHTML=file.type.startsWith('video')?`<video src="${url}" controls playsinline></video>`:`<img src="${url}" alt="">`;
-  e.target.value="";
-};
-
-/* gifts */
-GIFTS.forEach(g=>{
-  const d=document.createElement('div');d.className='gift g-'+g.c;
-  d.innerHTML='<div class="t"></div><div class="clue"></div>';
-  d.querySelector('.t').textContent=g.name;d.querySelector('.clue').textContent=g.clue;
-  d.onclick=()=>d.classList.toggle('open');
-  $('#giftList').appendChild(d);
-});
-
-/* exit flow */
-const m1=$('#m1'),m2=$('#m2');
-$('#exit').onclick=()=>m1.classList.add('on');
-$('#n1').onclick=()=>{m1.classList.remove('on');show('menu')};
-$('#y1').onclick=()=>{m1.classList.remove('on');m2.classList.add('on')};
-let spam=null;
-function burst(list,msg){
-  m2.classList.remove('on');$('#finalText').textContent=msg;show('final');
-  clearInterval(spam);
-  spam=setInterval(()=>{const e=document.createElement('div');e.className='emo';e.textContent=list[Math.floor(Math.random()*list.length)];
-    e.style.left=Math.random()*95+'vw';e.style.fontSize=(24+Math.random()*30)+'px';document.body.appendChild(e);setTimeout(()=>e.remove(),3300)},60);
-  setTimeout(()=>clearInterval(spam),8000);
-}
-$('#y2').onclick=()=>burst(["❤️","💕","💖","😍","🥰","💘","😘"],"Janji tau! Sayang awak 💖");
-$('#n2').onclick=()=>burst(["😢","😭","🥺","💔","😞"],"Sampai hati tak janji.. 😭");
-$('#again').onclick=()=>{clearInterval(spam);document.querySelectorAll('.emo').forEach(e=>e.remove());show('lock')};
-</script>
+    /* exit flow */
+    const m1 = $('#m1'), m2 = $('#m2');
+    $('#exit').onclick = () => m1.classList.add('on');
+    $('#n1').onclick = () => { m1.classList.remove('on'); show('menu') };
+    $('#y1').onclick = () => { m1.classList.remove('on'); m2.classList.add('on') };
+    let spam = null;
+    function burst(list, msg) {
+      m2.classList.remove('on'); $('#finalText').textContent = msg; show('final');
+      clearInterval(spam);
+      spam = setInterval(() => {
+        const e = document.createElement('div'); e.className = 'emo'; e.textContent = list[Math.floor(Math.random() * list.length)];
+        e.style.left = Math.random() * 95 + 'vw'; e.style.fontSize = (24 + Math.random() * 30) + 'px'; document.body.appendChild(e); setTimeout(() => e.remove(), 3300)
+      }, 60);
+      setTimeout(() => clearInterval(spam), 8000);
+    }
+    $('#y2').onclick = () => burst(["❤️", "💕", "💖", "😍", "🥰", "💘", "😘"], "Janji tau! Sayang awak 💖");
+    $('#n2').onclick = () => burst(["😢", "😭", "🥺", "💔", "😞"], "Sampai hati tak janji.. 😭");
+    $('#again').onclick = () => { clearInterval(spam); document.querySelectorAll('.emo').forEach(e => e.remove()); show('lock') };
+  </script>
 </body>
+
 </html>
